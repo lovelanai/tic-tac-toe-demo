@@ -99,7 +99,9 @@ class Game extends React.Component {
     /** hides button when pressed */
     if (document.getElementById('winbtn')){
       document.getElementById('winbtn').classList.add('hidewinbtn');
-      document.getElementById('winbtn').classList.remove('win')
+      document.getElementById('winbtn').classList.remove('win');
+      document.getElementById('game-board').classList.remove('winboard');
+      document.getElementById('status').classList.remove('wintext');
     }
 
     let status;
@@ -107,7 +109,9 @@ class Game extends React.Component {
     if (winner) {
       status = 'Winner: ' + winner;
       document.getElementById('winbtn').classList.add('win');
-      document.getElementById('winbtn').classList.remove('hidewinbtn')
+      document.getElementById('winbtn').classList.remove('hidewinbtn');
+      document.getElementById('game-board').classList.add('winboard');
+      document.getElementById('status').classList.add('wintext');
 
       
       
@@ -117,14 +121,14 @@ class Game extends React.Component {
 
     return (
       <div className="game">
-        <div className="game-board">
+        <div id='game-board' className="game-board">
           <Board
             squares={current.squares}
             onClick={(i) => this.handleClick(i)}
           />
         </div>
         <div className="game-info">
-          <div>{status} </div>
+          <div className='playerstatus' id='status'>{status} </div>
           <p>{moves}</p>
         </div>
       </div>
